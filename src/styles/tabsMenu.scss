@@ -1,0 +1,28 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.tabsMenu {
+    display: flex;
+    position: relative;
+    hr {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid rgba(128, 128, 128, 0.20);
+    }
+}
+
+.tabsMenu__item {
+    padding: 0 16px 12px 16px;
+    cursor: pointer;
+}
+
+.tabsMenu__item-active {
+    border-bottom: 2px solid #7B7454;
+}
+
+.tabsMenu__text {
+    @include fonts(#7B7454, 16px, 500, 100%);
+    letter-spacing: 0.32px;
+}

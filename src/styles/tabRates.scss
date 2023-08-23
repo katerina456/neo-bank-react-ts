@@ -1,0 +1,39 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.tabRates {
+    padding-top: 40px;
+}
+
+.tabRates__item {
+    display: grid;
+    grid-template-columns: 326px auto;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border: 0;
+    border-bottom: 1px solid #7F92AC;
+    &:last-of-type {
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
+}
+
+%text {
+    @include fonts(#000, 16px, 500, 100%);
+    letter-spacing: 0.32px;
+}
+
+.tabRates__title {
+    @extend %text;
+}
+
+.tabRates__text {
+    @extend %text;
+    color: #434343;
+}
+
+.tabRates__paragraphs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+}

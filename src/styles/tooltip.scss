@@ -1,0 +1,54 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.tooltip {
+    margin-top: 20px;
+    margin-bottom: 48px;
+}
+
+.tooltip__contailer {
+    border-radius: 28.8px;
+    background: linear-gradient(180deg, rgba(203, 213, 224, 0.62) 0%, rgba(254, 235, 200, 0.56) 100%);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20), 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+    padding: 48px 32px;
+    display: flex;
+    column-gap: 105px;
+}
+
+.tooltip__title {
+    @include fonts($white, 48px, 700, 100%);
+    letter-spacing: 0.96px;
+    margin-bottom: 48px;
+}
+
+%text {
+    @include fonts($text-darkBlue, 16px, 500, 112%);
+    letter-spacing: 0.32px;
+    max-width: 515px;
+}
+
+.tooltip__text {
+    @extend %text;
+}
+
+.tooltip_info {
+    display: flex;
+    column-gap: 80px;
+    margin: 32px 0;
+}
+
+.info_subtitle {
+    @include fonts($text-darkRed, 20px, 700, 112%);
+    letter-spacing: 0.4px;
+}
+
+.tooltip__text-dark {
+    @extend %text;
+    color: $text-darkRed;
+}
+
+.tooltip__item {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}

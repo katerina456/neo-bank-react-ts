@@ -1,0 +1,38 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.map {
+    margin-bottom: 48px;
+}
+
+.map__title {
+    @include fonts($title-blackColor, 30px, 500, 50px);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.map__text {
+    @include fonts($title-lightBlack, 16px, 500, 50px);
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.map__foto {
+    text-align: center;
+    width: 100%;
+    img {
+        width: inherit;
+    }
+}
+
+@media (max-width: 920px) {
+    .map__foto img {
+        width: 75vw;
+    }
+}
+  
+@media (max-width: 500px) {
+    .map__title {
+        font-size: 24px;
+    }
+}

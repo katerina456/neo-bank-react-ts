@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+body {
+    background: #F5F4FF;
+    font-family: 'Ubuntu', sans-serif;
+    font-style: normal;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+@media (max-width: 920px) {
+    .container {
+        width: 90vw;
+    }
+}

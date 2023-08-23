@@ -1,0 +1,78 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+%text {
+    @include fonts($text-darkBlue, 16px, 500, 147.4%);
+    letter-spacing: 0.32px;
+}
+
+footer {
+    padding-top: 96px;
+    padding-bottom: 92px;
+    background: linear-gradient(0deg, rgba(178, 178, 178, 0.20) 0%, rgba(178, 178, 178, 0.20) 100%), #F4F4F4;
+    ul {
+        display: flex;
+        column-gap: 32px;
+        row-gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+        li {
+            list-style: none;
+            a {
+                @extend %text;
+                color: $text-darkBlack;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    address {
+        ul {
+            display: flex;
+            flex-direction: column;
+            row-gap: 6px;
+            margin-bottom: 0;
+            li a {
+                font-style: normal
+            }
+        }
+    }
+}
+
+.footer__contacts {
+    @include flexJustify(space-between);
+    margin-bottom: 32px;
+}
+
+.footer__phone {
+    @include fonts($text-darkBlack, 30px, 700, 147.4%);
+}
+
+.footer__text {
+    @extend %text;
+}
+
+.footer__cookies {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.81);
+}
+
+@media (max-width: 500px) {
+    footer {
+        padding-top: 48px;
+        padding-bottom: 70px;
+    }
+    .footer__contacts {
+        flex-direction: column;
+        align-items: center;
+        row-gap: 24px;
+    }
+    .footer__cookies .footer__text {
+        font-size: 12px;
+    }
+    .footer__phone {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,61 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.acordeon__details {
+    display:block;
+    border: 1px solid #E2E8F0;
+    border-bottom: 0;
+    background: rgba(170, 170, 170, 0.00);
+    overflow:hidden;
+    &:last-of-type {
+        border-bottom: 1px solid #E2E8F0;
+    }
+    p {
+        @include fonts(#7B7454, 16px, 400, 147.4%);
+        padding: 32px;
+        padding-top: 28px;
+    }
+}
+
+.acordeon__summary::-webkit-details-marker {display:none;}
+.acordeon__summary::-moz-list-bullet {list-style-type:none;}
+.acordeon__summary::marker {display:none;} 
+
+.acordeon__summary {
+    @include fonts(#1C1C1E, 16px, 500, 147.4%);
+    display:block;
+    padding: 32px;
+    cursor: pointer;
+    position: relative;
+}
+
+.acordeon__summary:before {  
+    top: 34px;
+    right: 32px;
+    color: transparent;
+    background: url(../icons/expand_down.svg) no-repeat 50% 50%;
+    width: 24px;
+    height: 24px;  
+    content: "";
+    position: absolute;
+    transition: transform .5s;
+}
+
+.acordeon__details[open] > summary:before {
+    transform: scale(1,-1);
+}
+
+.acordeon__details[open] summary ~ *{ 
+    animation: sweep .5s ease-in-out;
+}
+
+@keyframes sweep {
+    0%    {opacity: 0;}
+    100%  {opacity: 1;}
+}
+
+.acordeon__title {
+    @include fonts(#000, 30px, 700, 147.4%);
+    margin: 32px 0;
+}

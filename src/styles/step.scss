@@ -1,0 +1,33 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.steps__text {
+    @include fonts($text-darkBlack, 16px, 500, 147.4%);
+    text-align: center;
+}
+
+.steps__item {
+    display: grid;
+    align-items: center;
+    column-gap: 36px;
+    grid-template-columns: 48px auto;
+    margin-bottom: 20px;
+    hr {
+        width: 100%;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.20);
+    }
+}
+
+.steps__number {
+    border-radius: 50px;
+    background: #D9D9D9;
+    width: 48px;
+    height: 48px;
+    @include flexJustify(center);
+    align-items: center;
+    span {
+        @include fonts($text-darkBlack, 20px, 700, 147.4%);
+        text-align: center;
+    }
+}
