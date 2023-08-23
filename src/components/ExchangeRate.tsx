@@ -8,12 +8,14 @@ import "../styles/exchangeRate.scss";
 const ExchangeRate: React.FC = () => {
     const [exchangeValues, setExchageValues] = useState(['60.78', '9.08', '64.78', '60.78', '0.46', '3.39']);
     
-
     useEffect(() => {
         getExchange();
         setInterval(getExchange, 60000);
     }, []);
 
+    const generateKey = (str:string) => {
+        return `${str}_${ new Date().getTime() }`;
+    }
 
     const currencies = ['USD', 'CNH', 'INR', 'EUR', 'JPY', 'MXN'];
 
@@ -43,7 +45,7 @@ const ExchangeRate: React.FC = () => {
                     <div className="exchangeRate-currency">
                         {
                             exchangeValues.map((value, index) => {
-                                return <ExchangeRateItem key={index*+value} title={currencies[index]} value={value} />
+                                return <ExchangeRateItem key={generateKey(currencies[index])} title={currencies[index]} value={value} />
                             })
                         }
                     </div>

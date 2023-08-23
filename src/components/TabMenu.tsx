@@ -1,4 +1,5 @@
 import React from "react";
+import tabMenuArray from "../constants/tabMenu";
 
 import "../styles/tabsMenu.scss";
 
@@ -8,16 +9,10 @@ interface Props {
 }
 
 const TabMenu: React.FC<Props> = (props) => {
-    let menuArray = ['About card', 
-                    'Rates and conditions', 
-                    'Cashback', 
-                    'FAQ'
-    ];
-
     return (
         <div className="tabsMenu">
             {
-                menuArray.map((item, index) => {
+                tabMenuArray.map((item, index) => {
                     return (
                         <div key={item} onClick={() => props.handleclick(index)}
                             className={`tabsMenu__item ${props.activeTab === index? 'tabsMenu__item-active' : ''}`} 

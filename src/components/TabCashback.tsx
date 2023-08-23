@@ -1,41 +1,19 @@
 import React from "react";
+import tabCashBackArray from "../constants/tabCashBack";
 
 import "../styles/tabCashback.scss";
 
 const TabCashBack: React.FC = () => {
-    let contentArray: {title: string, text: string}[] = [
-        {
-            title: '5%',
-            text: 'For food delivery, cafes and restaurants',
-        }, 
-        {
-            title: '5%',
-            text: 'In supermarkets with our subscription',
-        }, 
-        {
-            title: '2%',
-            text: "In clothing stores and children's goods",
-        }, 
-        {
-            title: '1%',
-            text: 'Other purchases and payment of services and fines',
-        }, 
-        {
-            title: 'up to 3%',
-            text: 'Shopping in online stores',
-        }, 
-        {
-            title: '30%',
-            text: 'Purchases from our partners',
-        }, 
-    ];
+    const generateKey = (str:string) => {
+        return `${str}_${ new Date().getTime() }`;
+    }
 
     return (
         <div className="tabCashback">
             {
-                contentArray.map((item, index) => {
+                tabCashBackArray.map((item, index) => {
                     return (
-                        <div className={`tabCashback__item`} key={item.title + index}>
+                        <div className={`tabCashback__item`} key={generateKey(index.toString())}>
                             <p className="tabCashback__text">{item.text}</p>
                             <h2 className="tabCashback__title">{item.title}</h2>
                         </div>

@@ -1,10 +1,10 @@
 import React from "react";
-import ChooseDesign from "./ChooseDesign";
-import Features from "./Features";
-import ExchangeRate from "./ExchangeRate";
-import BankMap from "./BankMap";
-import News from "./News";
-import Support from "./Support";
+import ChooseDesign from "../components/ChooseDesign";
+import Features from "../components/Features";
+import ExchangeRate from "../components/ExchangeRate";
+import BankMap from "../components/BankMap";
+import News from "../components/News";
+import Support from "../components/Support";
 
 import "../styles/main.scss";
 

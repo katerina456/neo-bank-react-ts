@@ -16,13 +16,17 @@ const Acordeon: React.FC<Props> = ({title, array}) => {
         }
     };
 
+    const generateKey = (str:string) => {
+        return `${str}_${ new Date().getTime() }`;
+    }
+
     return (
         <div className="acordeon">
             <h2 className="acordeon__title">{title}</h2>
             {
                 array.map((item, index) => {
                     return (
-                        <details key={item.summary} className="acordeon__details" open={open === index}
+                        <details key={generateKey(item.summary)} className="acordeon__details" open={open === index}
                         onToggle={(event: React.SyntheticEvent) => toggleDetails(event, index)} 
                         >
                             <summary className="acordeon__summary">{item.summary}</summary>

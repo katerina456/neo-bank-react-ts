@@ -1,7 +1,7 @@
 import React from "react";
-import Tooltip from "./Tooltip";
-import Tab from "./Tab";
-import Prescoring from "./Prescoring";
+import Tooltip from "../components/Tooltip";
+import Tab from "../components/Tab";
+import Prescoring from "../components/Prescoring";
 
 import "../styles/main.scss";
 
