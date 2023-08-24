@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-scroll';
 import Button from "./Button";
 import TooltipItem from "./TooltipItem";
 import Wraper from "./Wraper";
@@ -22,9 +23,15 @@ const Tooltip: React.FC = () => {
                         <TooltipItem title='Up to 600 000 ₽' text='Credit limit' />
                         <TooltipItem title='0 ₽' text='Card service is free' />
                     </div>
-                    <a href="#applyForm">
+                    <Link activeClass="active"
+                        to="applyForm"
+                        spy={true}
+                        smooth={true}
+                        offset={-50}
+                        duration={800}
+                    >
                         <Button text='Apply for card' />
-                    </a> 
+                    </Link>
                 </div>
                 <div className="tooltip__foto">
                     <img src="images/credit-card.png" alt="" />

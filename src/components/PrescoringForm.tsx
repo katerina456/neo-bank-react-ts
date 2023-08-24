@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form } from 'formik';
 import * as Yup from "yup";
+import { Element } from 'react-scroll';
 
 import Input from "./Input";
 import InputDate from "./InputDate";
@@ -78,7 +79,8 @@ const PrescoringForm: React.FC = () => {
             validationSchema={validationSchema}
         >
             {({values, errors, handleChange}) => (
-                <Form className="form" id="applyForm">
+                <Form className="form" >
+                    <Element name="applyForm" className="element" />
                     <div className="form__header">
                         <div className="form__header-marginRight">
                             <div className="form__info"> 

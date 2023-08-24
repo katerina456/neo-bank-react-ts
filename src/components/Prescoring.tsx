@@ -23,6 +23,7 @@ const Prescoring: React.FC = () => {
                     convenient, to your city'
                 />
             </div>
+                      
             <PrescoringForm />
         </Wraper>
     )
