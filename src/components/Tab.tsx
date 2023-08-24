@@ -10,23 +10,27 @@ import Wraper from "./Wraper";
 import "../styles/tabs.scss";
 
 const Tab: React.FC = () => {
-    const [activeTab, setActiveTab] = useState(0)
+    enum ContentTabs {TabAbout, TabRates, TabCashback, TabFaq};
+
+    const [activeTab, setActiveTab] = useState(ContentTabs.TabAbout);
+
     function toggleTab(index: number): void {
-        setActiveTab(index)
-    }
-    
+        setActiveTab(index);
+    };
+
+    const tabs : Record<ContentTabs, JSX.Element> = { 
+        [ContentTabs.TabAbout]: <TabAbout /> ,
+        [ContentTabs.TabRates]: <TabRates />,
+        [ContentTabs.TabCashback]: <TabCashback />,
+        [ContentTabs.TabFaq]: <TabFaq />
+    };
+
     return (
         <Wraper classes="tab">
             <TabMenu handleclick={toggleTab} activeTab={activeTab} />
 
             <div className="tabsContent">
-                {activeTab === 0 && <TabAbout />}
-
-                {activeTab === 1 && <TabRates />}
-
-                {activeTab === 2 && <TabCashback />}
-
-                {activeTab === 3 && <TabFaq />}
+                { tabs[activeTab] }
             </div> 
         </Wraper>
     )
