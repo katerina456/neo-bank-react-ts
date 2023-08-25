@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {Field, ErrorMessage } from 'formik';
 import clsx from 'clsx';
 
@@ -12,12 +12,18 @@ interface Props {
     type: "date",
     errors: any,
     values: any,
+    isSubmitting: boolean,
 }
 
 const InputDate: React.FC<Props> = (props) => {
-    const classes = clsx({ 'input__field-green': props.values[props.name]!== '', 
-                           'input__field-red': props.errors[props.name], }, 
-                           'input__field');
+    let classes = useMemo(() => {
+        return clsx('input__field',
+                    { 'input__field-green': props.values[props.name]!== '' , 
+                      'input__field-red': props.errors[props.name] });
+    }, [props.isSubmitting]);
+   /*  const classes = clsx('input__field',
+                        { 'input__field-green': props.values[props.name]!== '', 
+                          'input__field-red': props.errors[props.name], }, ); */
     
     return (
         <div className="input">

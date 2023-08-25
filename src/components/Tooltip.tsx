@@ -19,9 +19,12 @@ const Tooltip: React.FC = () => {
                         Cash withdrawals and transfers without commission and interest.
                     </p>
                     <div className="tooltip_info">
-                        <TooltipItem title='Up to 160 days' text='No percent' />
-                        <TooltipItem title='Up to 600 000 ₽' text='Credit limit' />
-                        <TooltipItem title='0 ₽' text='Card service is free' />
+                        <TooltipItem title='Up to 160 days' text='No percent' 
+                                     hint='When repaying the full debt up to 160 days.' />
+                        <TooltipItem title='Up to 600 000 ₽' text='Credit limit'
+                                     hint='Over the limit willaccrue percent'  />
+                        <TooltipItem title='0 ₽' text='Card service is free' 
+                                     hint='Promotion valid until December 31, 2022.' />
                     </div>
                     <Link activeClass="active"
                         to="applyForm"

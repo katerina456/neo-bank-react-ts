@@ -8,8 +8,7 @@
     row-gap: 8px;
 }
 
-
-.input__field {
+.input__field, .input__field:active, .input__field:hover {
     border-radius: 6px;
     border: 1px solid rgba(128, 128, 128, 0.20);
     background-color: #F9F5E3;
@@ -31,6 +30,7 @@
 
 .input__field-green {
     border: 1px solid rgba(128, 128, 128, 0.20);
+    background-image: none;
     background-image: url(../icons/round-ok.svg);
     background-repeat: no-repeat;
     background-position-x: right;

@@ -35,6 +35,35 @@
     display: flex;
     column-gap: 80px;
     margin: 32px 0;
+    [data-title] {
+        position: relative;
+    }
+    
+    [data-title]::after {
+        content: attr(data-title); 
+        position: absolute; 
+        right: 4%; 
+        top: 55px; 
+        opacity: 0; 
+        transition: 0.5s; 
+        pointer-events: none; 
+        box-sizing: border-box;
+        background: #3D3D3D; 
+        padding: 8px 20px 8px 7px;
+        width: 170px;
+        height: 36px;
+    
+        @include fonts(#FFF, 12px, 500, 100%);
+        font-family: Ubuntu;
+        letter-spacing: 0.24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    [data-title]:hover::after {
+        opacity: 1; 
+    }
 }
 
 .info_subtitle {

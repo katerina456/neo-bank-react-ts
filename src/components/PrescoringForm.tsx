@@ -78,7 +78,7 @@ const PrescoringForm: React.FC = () => {
             }}
             validationSchema={validationSchema}
         >
-            {({values, errors, handleChange}) => (
+            {({values, errors, handleChange, isSubmitting}) => (
                 <Form className="form" >
                     <Element name="applyForm" className="element" />
                     <div className="form__header">
@@ -111,13 +111,13 @@ const PrescoringForm: React.FC = () => {
                     <h3 className="form_subtitle">Contact Information</h3>
                     <div className="form__inputs">  
                         <Input type='text' name='lastName' label='Your last name' values={values}
-                            placeholder='For Example Doe' required={true}  errors={errors} 
+                            placeholder='For Example Doe' required={true}  errors={errors} isSubmitting={isSubmitting}
                         />
                         <Input type='text' name='firstName' label='Your first name' values={values}
-                            placeholder='For Example Jhon' required={true} errors={errors} 
+                            placeholder='For Example Jhon' required={true} errors={errors} isSubmitting={isSubmitting}
                         />
                         <Input type='text' name='middleName' label='Your patronymic' values={values}
-                            placeholder='For Example Victorovich' required={false} errors={errors} 
+                            placeholder='For Example Victorovich' required={false} errors={errors} isSubmitting={isSubmitting}
                         />
 
                         <Select name='term' label='Select term' required={true}
@@ -125,17 +125,17 @@ const PrescoringForm: React.FC = () => {
                         />
 
                         <Input type='email' name='email' label='Your email'  values={values}
-                            placeholder='test@gmail.com' required={true} errors={errors} 
+                            placeholder='test@gmail.com' required={true} errors={errors} isSubmitting={isSubmitting}
                         />
                         <InputDate type='date' name='birthdate' label='Your date of birth' values={values}
-                            placeholder='Select Date and Time' required={true} errors={errors} 
+                            placeholder='Select Date and Time' required={true} errors={errors} isSubmitting={isSubmitting}
                         /> 
 
                         <Input type='text' name='passportSeries' label='Your passport series' values={values}
-                            placeholder='0000' required={true} errors={errors} 
+                            placeholder='0000' required={true} errors={errors} isSubmitting={isSubmitting}
                         />
                         <Input type='text' name='passportNumber' label='Your passport number' values={values}
-                            placeholder='000000' required={true} errors={errors} 
+                            placeholder='000000' required={true} errors={errors} isSubmitting={isSubmitting}
                         /> 
                     </div>    
 
