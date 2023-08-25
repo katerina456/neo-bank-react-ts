@@ -7,6 +7,7 @@ import Input from "./Input";
 import InputDate from "./InputDate";
 import Button from "./Button";
 import Select from "./Select";
+import Loader from "./Loader";
 
 import "../styles/prescoringForm.scss";
 
@@ -81,6 +82,7 @@ const PrescoringForm: React.FC = () => {
             {({values, errors, handleChange, isSubmitting}) => (
                 <Form className="form" >
                     <Element name="applyForm" className="element" />
+                    {!isLoader && <div className="form__elements">
                     <div className="form__header">
                         <div className="form__header-marginRight">
                             <div className="form__info"> 
@@ -140,9 +142,10 @@ const PrescoringForm: React.FC = () => {
                     </div>    
 
                     <div className="form__buttons">
-                        {isLoader && <div className="loader"></div>}
                         <Button type="submit" text='Continue' />
                     </div> 
+                    </div>}
+                    {isLoader && <Loader />}
                  </Form>
             )}
         </Formik>        
