@@ -1,0 +1,22 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.document__header {
+    display: grid;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    grid-template-columns: 50% 50%;
+}
+
+.document__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.document__send {
+    display: flex;
+    column-gap: 40px;
+    align-items: center;
+}

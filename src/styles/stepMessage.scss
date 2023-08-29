@@ -1,0 +1,24 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.stepMessage {
+    border-radius: 10px;
+    border: 1px solid #5B35D5;
+    background: rgba(217, 217, 217, 0.00);
+    padding-top: 24px;
+    padding-bottom: 34px;
+}
+
+.stepMessage__title {
+    @include fonts(#1C1C1E, 30px, 700, 112%);
+    text-align: center;
+    letter-spacing: 0.6px;
+    margin-bottom: 32px;
+}
+
+.stepMessage__text {
+    @include fonts(#4F5665, 16px, 500, 112%);
+    text-align: center;
+    letter-spacing: 0.32px;
+}

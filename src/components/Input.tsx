@@ -13,13 +13,16 @@ interface Props {
     errors: any,
     values: any,
     isSubmitting: boolean,
+    size?: string,
 };
 
 const Input: React.FC<Props> = (props) => {
     let classes = useMemo(() => {
         return clsx('input__field',
                     { 'input__field-green': props.values[props.name]!== '' , 
-                      'input__field-red': props.errors[props.name] });
+                      'input__field-red': props.errors[props.name],
+                      'input__field-medium': props.size === 'medium',
+                      'input__field-large': props.size === 'large' });
     }, [props.isSubmitting]);
   
     return (
@@ -33,8 +36,7 @@ const Input: React.FC<Props> = (props) => {
             className={classes}
             placeholder={props.placeholder}
             id={props.name}
-            autoComplete="off"
-            /* required={props.required} */     
+            autoComplete="off"  
             />
             <ErrorMessage
             component="div"

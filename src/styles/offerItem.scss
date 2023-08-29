@@ -1,0 +1,41 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+%flexColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.offerItem {
+    border-radius: 28px;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20), 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
+    padding: 32px;
+    width: 295px;
+    height: 602px;
+    @extend %flexColumn;
+    justify-content: space-between;
+}
+
+.offerItem__image {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.offerItem__info {
+    @extend %flexColumn;
+    row-gap: 14px;
+}
+
+.offerItem__text {
+    @include fonts(#1C1C1E, 16px, 500, 112%); 
+    letter-spacing: 0.32px;
+}
+
+.offerItem__block {
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+}

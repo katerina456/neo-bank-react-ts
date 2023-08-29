@@ -1,13 +1,14 @@
 import React from "react";
 import { Formik, Form } from 'formik';
 import * as Yup from "yup";
-import { Element } from 'react-scroll';
 
 import Input from "./Input";
 import InputDate from "./InputDate";
 import Button from "./Button";
 import Select from "./Select";
 import Loader from "./Loader";
+import FormTitle from "./FormTitle";
+import StepWraper from "./StepWraper";
 
 import "../styles/prescoringForm.scss";
 
@@ -38,12 +39,21 @@ const validationSchema = Yup.object().shape({
 });
 
 
-const PrescoringForm: React.FC = () => {
+interface Props {
+    handleClick: Function,
+}
+
+const PrescoringForm: React.FC<Props> = (props) => {
     const [isLoader, setIsLoader] = React.useState(false);
     const color1:string = "#5B35D5";
     const color2:string = "#E2E8F0";
 
+    function setNextStep() {
+        props.handleClick(2);
+    }
+
     return (
+        <StepWraper>
         <Formik
             initialValues={{ 
                 amount: 15000,
@@ -71,24 +81,23 @@ const PrescoringForm: React.FC = () => {
                 .then(res => {
                     setIsLoader(false);
                     console.log(res.status);
+                    setNextStep();
                 })
                 .catch(err => {
                     setIsLoader(false);
                     console.log(err);
+                    setNextStep();
                 });
             }}
             validationSchema={validationSchema}
         >
             {({values, errors, handleChange, isSubmitting}) => (
                 <Form className="form" >
-                    <Element name="applyForm" className="element" />
                     {!isLoader && <div className="form__elements">
                     <div className="form__header">
                         <div className="form__header-marginRight">
-                            <div className="form__info"> 
-                                <h2 className="form__title">Customize your card</h2>
-                                <p className="form__text">Step 1 of 5</p>
-                            </div>
+                            <FormTitle title='Customize your card' number={1} />
+                            
                             <div className="form__range">
                                 <label htmlFor="amount" className="form__text">Select amount</label>
                                 <p className="form__text">{values.amount.toLocaleString()}</p>
@@ -110,7 +119,7 @@ const PrescoringForm: React.FC = () => {
                             <hr />
                         </div>
                     </div>
-                    <h3 className="form_subtitle">Contact Information</h3>
+                    <h3 className="form__subtitle">Contact Information</h3>
                     <div className="form__inputs">  
                         <Input type='text' name='lastName' label='Your last name' values={values}
                             placeholder='For Example Doe' required={true}  errors={errors} isSubmitting={isSubmitting}
@@ -122,8 +131,8 @@ const PrescoringForm: React.FC = () => {
                             placeholder='For Example Victorovich' required={false} errors={errors} isSubmitting={isSubmitting}
                         />
 
-                        <Select name='term' label='Select term' required={true}
-                            arr={[6, 12, 18, 24]} 
+                        <Select name='term' label='Select term' required={true} addEmptyOption={false}
+                            arr={[6, 12, 18, 24]} optionText=" month" isSubmitting={isSubmitting}
                         />
 
                         <Input type='email' name='email' label='Your email'  values={values}
@@ -149,6 +158,7 @@ const PrescoringForm: React.FC = () => {
                  </Form>
             )}
         </Formik>        
+        </StepWraper>
     )
 }
 

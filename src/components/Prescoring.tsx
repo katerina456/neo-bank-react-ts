@@ -1,11 +1,13 @@
 import React from "react";
 import Step from "./Step";
-import PrescoringForm from "./PrescoringForm";
 import Wraper from "./Wraper";
+import StepOne from "./StepOne";
 
 import "../styles/prescoring.scss";
 
 const Prescoring: React.FC = () => {
+    const [step, setStep] = React.useState(1)
+
     return (
         <Wraper classes="prescoring">
             <h2 className="prescoring__title">How to get a card</h2>
@@ -24,7 +26,7 @@ const Prescoring: React.FC = () => {
                 />
             </div>
                       
-            <PrescoringForm />
+            {step === 1 && <StepOne />}
         </Wraper>
     )
 }

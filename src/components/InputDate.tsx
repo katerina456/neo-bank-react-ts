@@ -13,17 +13,16 @@ interface Props {
     errors: any,
     values: any,
     isSubmitting: boolean,
+    size?: string,
 }
 
 const InputDate: React.FC<Props> = (props) => {
     let classes = useMemo(() => {
         return clsx('input__field',
                     { 'input__field-green': props.values[props.name]!== '' , 
-                      'input__field-red': props.errors[props.name] });
+                      'input__field-red': props.errors[props.name],
+                      'input__field-large': props.size === 'large'  });
     }, [props.isSubmitting]);
-   /*  const classes = clsx('input__field',
-                        { 'input__field-green': props.values[props.name]!== '', 
-                          'input__field-red': props.errors[props.name], }, ); */
     
     return (
         <div className="input">

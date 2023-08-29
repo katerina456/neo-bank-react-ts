@@ -1,0 +1,23 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.table {
+    width: 100%;
+    margin-bottom: 44px;
+    border-collapse: collapse;
+    tr { 
+        height: 40.5px; 
+        border-bottom: 1px solid #E2E8F0;
+        background: rgba(217, 217, 217, 0.00);
+    }
+    th {
+        @include fonts(#4A5568, 12px, 500, 147.4%); 
+        letter-spacing: 0.24px;
+        text-align: left;
+    }
+    td {
+        @include fonts(#1A202C, 12px, 500, 147.4%); 
+        letter-spacing: 0.24px;
+    }
+}

@@ -8,7 +8,7 @@
     row-gap: 8px;
 }
 
-.input__field, .input__field:active, .input__field:hover {
+.input__field {
     border-radius: 6px;
     border: 1px solid rgba(128, 128, 128, 0.20);
     background-color: #F9F5E3;
@@ -20,6 +20,14 @@
     &::placeholder {
         @include fonts(#808080, 14px, 400, 100%);
     }
+}
+
+.input__field-medium {
+    width: 401.33px;
+}
+
+.input__field-large {
+    width: 608px;
 }
 
 .input__field:focus {

@@ -1,0 +1,18 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.formTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 32px;
+}
+
+.formTitle__text {
+    @include fonts(#000, 30px, 700, 100%);
+}
+
+.formTitle__step {
+    @include fonts(#000, 16px, 500, 100%);
+}

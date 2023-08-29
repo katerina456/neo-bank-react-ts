@@ -1,0 +1,20 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.scoringMessage {
+    padding: 160px 0;
+}
+
+.scoringMessage__title {
+    @include fonts(#1C1C1E, 30px, 700, 112%);
+    text-align: center;
+    letter-spacing: 0.6px;
+    margin-bottom: 32px;
+}
+
+.scoringMessage__text {
+    @include fonts(#4F5665, 16px, 500, 112%);
+    text-align: center;
+    letter-spacing: 0.32px;
+}

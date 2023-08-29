@@ -2,13 +2,6 @@
 @import "_mixins.scss";
 
 
-.form {
-    border-radius: 28px;
-    background: #FFF;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.20), 0px 0px 8px 0px rgba(0, 0, 0, 0.08);
-    padding: 32px;
-}
-
 .form__header {
     display: grid;
     justify-content: space-between;
@@ -19,7 +12,6 @@
         border: 0;
         border-right: 1px dashed rgba(128, 128, 128, 0.40);
     }
-    
 }
 
 %text {
@@ -34,18 +26,7 @@
     }
 }
 
-.form__info {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    margin-bottom: 32px;
-}
-
-.form__title {
-    @include fonts(#000, 30px, 700, 100%);
-}
-
-.form_subtitle {
+.form__subtitle {
     @include fonts(#000, 20px, 700, 100%);
     margin-bottom: 26px;
 }
