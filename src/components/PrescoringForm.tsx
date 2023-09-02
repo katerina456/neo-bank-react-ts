@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form } from 'formik';
 import * as Yup from "yup";
+import { useDispatch } from 'react-redux';
 
 import Input from "./Input";
 import InputDate from "./InputDate";
@@ -9,6 +10,7 @@ import Select from "./Select";
 import Loader from "./Loader";
 import FormTitle from "./FormTitle";
 import StepWraper from "./StepWraper";
+import { changeStep } from "../store/slices/stepSlice";
 
 import "../styles/prescoringForm.scss";
 
@@ -22,12 +24,13 @@ function calculateAge(birthday: any) {
 
 const validationSchema = Yup.object().shape({
     lastName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters")
-        .trim().required("Enter your last name"),
+        .trim().min(2, "Name can't be so short").required("Enter your last name"),
     firstName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters")
-        .trim().required("Enter your first name"),
-    middleName: Yup.string().matches(/^[A-ZА-ЯЁ]+$/i, "Only letters").trim(),
-    email: Yup.string().email("Incorrect email address")
-        .trim().required("Incorrect email address"),
+        .trim().min(2, "Name can't be so short").required("Enter your first name"),
+    middleName: Yup.string().min(2, "Name can't be so short").matches(/^[A-ZА-ЯЁ]+$/i, "Only letters").trim(),
+    email: Yup.string().email("Incorrect email address").trim()
+        .matches(/[\w\.]{2,50}@[\w\.]{2,20}/, 'Incorrect email address')
+        .required("Incorrect email address"),
     birthdate: Yup.date().required(`Incorrect date of birth`)
         .test("birthday", "Incorrect date of birth", function(value) {
             return calculateAge(new Date(value)) >= 18;
@@ -48,8 +51,23 @@ const PrescoringForm: React.FC<Props> = (props) => {
     const color1:string = "#5B35D5";
     const color2:string = "#E2E8F0";
 
-    function setNextStep() {
-        props.handleClick(2);
+    const dispatch = useDispatch();
+
+    function setNextStep(data: any[]) {
+        props.handleClick(data);
+        dispatch(changeStep(2));
+    }
+
+    interface Values {
+        amount: number,
+        lastName: string,
+        firstName: string,
+        middleName?: string,
+        term: number,
+        email: string, 
+        birthdate: string,
+        passportSeries: string,
+        passportNumber: string 
     }
 
     return (
@@ -59,7 +77,7 @@ const PrescoringForm: React.FC<Props> = (props) => {
                 amount: 15000,
                 lastName: "",
                 firstName: "",
-                middleName: "",
+                middleName: '',
                 term: 6,
                 email: "", 
                 birthdate: "",
@@ -68,25 +86,34 @@ const PrescoringForm: React.FC<Props> = (props) => {
             }}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={(val) => {
-                console.log(val);
+            onSubmit={(values: Values) => {
+                console.log(values);                     
+
+                if (values['middleName'] === '') {
+                    delete values.middleName;
+                }
+
                 setIsLoader(true);
                 fetch('http://localhost:8080/application', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(val)
+                    body: JSON.stringify(values)
                 }) 
                 .then(res => {
-                    setIsLoader(false);
                     console.log(res.status);
-                    setNextStep();
+                    return res.json();
+                })
+                .then(data => {
+                    setIsLoader(false);
+                   // console.log(data);
+                    setNextStep(data);
                 })
                 .catch(err => {
                     setIsLoader(false);
                     console.log(err);
-                    setNextStep();
+                    //setNextStep();
                 });
             }}
             validationSchema={validationSchema}

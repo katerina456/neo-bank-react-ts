@@ -1,13 +1,23 @@
 import React from "react";
 import { Link } from 'react-scroll';
+import { Link as LinkRout } from "react-router-dom";
+
 import Button from "./Button";
 import TooltipItem from "./TooltipItem";
 import Wraper from "./Wraper";
+import tooltipArray from "../constants/tooltipArray";
 
 import "../styles/tooltip.scss";
 
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import type { RootState } from '../store';
+
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
 
 const Tooltip: React.FC = () => {
+    const steps = useAppSelector(state => state.step);
+
     return (
         <Wraper classes="tooltip">
             <div className="tooltip__contailer">
@@ -19,22 +29,22 @@ const Tooltip: React.FC = () => {
                         Cash withdrawals and transfers without commission and interest.
                     </p>
                     <div className="tooltip_info">
-                        <TooltipItem title='Up to 160 days' text='No percent' 
-                                     hint='When repaying the full debt up to 160 days.' />
-                        <TooltipItem title='Up to 600 000 ₽' text='Credit limit'
-                                     hint='Over the limit willaccrue percent'  />
-                        <TooltipItem title='0 ₽' text='Card service is free' 
-                                     hint='Promotion valid until December 31, 2022.' />
+                        {tooltipArray.map(item => {
+                            return <TooltipItem key={item.title} title={item.title} text={item.text} hint={item.hint} />
+                        })}
                     </div>
-                    <Link activeClass="active"
+                    {steps.step !== 3 && <Link activeClass="active"
                         to="applyForm"
                         spy={true}
                         smooth={true}
                         offset={-50}
                         duration={800}
                     >
-                        <Button text='Apply for card' />
-                    </Link>
+                        <Button text={steps.step === 1? 'Apply for card' : 'Choose an offer'} />
+                    </Link>}
+                    {steps.step === 3 && <LinkRout to='/loan/applicationId'>
+                        <Button text='Continue registration' />
+                    </LinkRout>}
                 </div>
                 <div className="tooltip__foto">
                     <img src="images/credit-card.png" alt="" />

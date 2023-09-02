@@ -1,12 +1,31 @@
 import React from "react";
+import { Element } from 'react-scroll';
+
 import Step from "./Step";
 import Wraper from "./Wraper";
-import StepOne from "./StepOne";
+import StepMessage from "./StepMessage";
+import Offer from "./Offer";
+import PrescoringForm from "./PrescoringForm";
 
 import "../styles/prescoring.scss";
 
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import type { RootState } from '../store';
+
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+
 const Prescoring: React.FC = () => {
-    const [step, setStep] = React.useState(1)
+   const [offers, setOffers] = React.useState([]);
+
+   const steps = useAppSelector(state => state.step);
+
+   function showOffers(data: any) {
+       console.log(data[0].applicationId);
+       localStorage.setItem('userId', data[0].applicationId);
+       localStorage.setItem('userOffers', JSON.stringify(data));
+       setOffers(data);
+    }
 
     return (
         <Wraper classes="prescoring">
@@ -26,7 +45,10 @@ const Prescoring: React.FC = () => {
                 />
             </div>
                       
-            {step === 1 && <StepOne />}
+            <Element name="applyForm" className="element" />
+            {steps.step === 1 && <PrescoringForm handleClick={showOffers} />}
+            {steps.step === 2 && <Offer offers={offers} />}
+            {steps.step === 3 && <StepMessage />}
         </Wraper>
     )
 }

@@ -5,6 +5,9 @@ import "../styles/offerItem.scss";
 
 interface Props {
     payment: number,
+    term: number,
+    amountRequest: number,
+    amountTotal: number,
     rate: number,
     isInsurance: boolean,
     isSalary: boolean,
@@ -19,9 +22,9 @@ const OfferItem: React.FC<Props> = (props) => {
                     <img src="../../images/surpriseimage.png" alt="" />
                 </div>
                 <div className="offerItem__info">
-                    <p className="offerItem__text">Requested amount: 200 000 ₽</p>
-                    <p className="offerItem__text">Total amount: 200 000 ₽</p>
-                    <p className="offerItem__text">For 24 months</p>
+                    <p className="offerItem__text">Requested amount: {props.amountRequest} ₽</p>
+                    <p className="offerItem__text">Total amount: {props.amountTotal} ₽</p>
+                    <p className="offerItem__text">For {props.term} months</p>
                     <p className="offerItem__text">Monthly payment: {props.payment} ₽</p>
                     <p className="offerItem__text">Your rate: {props.rate}%</p>
                     <div className="offerItem__block">
