@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form } from 'formik';
 import * as Yup from "yup";
+import { useDispatch } from 'react-redux';
 
 import Input from "./Input";
 import InputDate from "./InputDate";
@@ -9,6 +10,7 @@ import Select from "./Select";
 import Loader from "./Loader";
 import FormTitle from "./FormTitle";
 import StepWraper from "./StepWraper";
+import { changeScoringStep } from "../store/slices/stepSlice";
 
 import "../styles/prescoringForm.scss";
 
@@ -17,8 +19,8 @@ const validationSchema = Yup.object().shape({
     gender: Yup.string().required("Select one of the options"),
     maritalStatus: Yup.string().required("Select one of the options"),
     dependentAmount: Yup.string().required("Select one of the options"),
-    passportIssueDate: Yup.date().required(`Incorrect date of birth`)
-    .max(new Date(), "Incorrect date of birth"),
+    passportIssueDate: Yup.date().required(`Incorrect date of passport issue date`)
+    .max(new Date(), "Incorrect date of passport issue date"),
     passportIssueBranch: Yup.string().matches(/^\d+$/, "Only numbers")
         .length(6, "The series must be 6 digits").trim().required("The series must be 6 digits"),
     employmentStatus: Yup.string().required("Select one of the options"), 
@@ -33,12 +35,10 @@ const validationSchema = Yup.object().shape({
 });
 
 
-interface Props {
-    handleClick: Function,
-}
-
-const Scoring: React.FC<Props> = (props) => {
+const Scoring: React.FC = () => {
     const [isLoader, setIsLoader] = React.useState(false);
+
+    const dispatch = useDispatch();
 
     return (
         <StepWraper>
@@ -61,8 +61,8 @@ const Scoring: React.FC<Props> = (props) => {
             onSubmit={(val) => {
                 console.log(val);
                 setIsLoader(true);
-                fetch('http://localhost:8080/application/registration/{applicationId}', {
-                    method: 'POST',
+                fetch(`http://localhost:8080/application/registration/${localStorage.getItem('userId')}`, {
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -71,12 +71,12 @@ const Scoring: React.FC<Props> = (props) => {
                 .then(res => {
                     setIsLoader(false);
                     console.log(res.status);
-                    props.handleClick(2)
+                    localStorage.setItem('secondForm', 'done');
+                    dispatch(changeScoringStep(2));
                 })
                 .catch(err => {
                     setIsLoader(false);
                     console.log(err);
-                    props.handleClick(2)
                 });
             }}
             validationSchema={validationSchema}

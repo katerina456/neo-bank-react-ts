@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import OfferItem from "./OfferItem";
 import Loader from "./Loader";
-import { changeStep } from "../store/slices/stepSlice";
+import { changePrescoringStep } from "../store/slices/stepSlice";
 
 import "../styles/offer.scss";
 
@@ -16,14 +16,17 @@ interface Props {
 const Offer: React.FC<Props> = (props) => {
     const [isLoader, setIsLoader] = React.useState(false);
     let offers = props.offers;
+    
+    let localOffers: any;
+    if (offers.length === 0) {
+        localOffers = localStorage.getItem('userOffers') ;
+        offers = JSON.parse(localOffers)
+    }
 
     const dispatch = useDispatch();
 
     function setNextStep(item: object) {
         setIsLoader(true);
-        console.log(item);
-        console.log('id',localStorage.getItem('userId'))
-        console.log(localStorage.getItem('userOffers'))
         
         fetch('http://localhost:8080/application/apply', {
             method: 'POST',
@@ -35,7 +38,8 @@ const Offer: React.FC<Props> = (props) => {
         .then(res => {
             setIsLoader(false);
             console.log(res.status);
-            dispatch(changeStep(3))
+            dispatch(changePrescoringStep(3));
+            localStorage.setItem('userStatus', 'APPROVED');
         })
         .catch(err => {
             setIsLoader(false);

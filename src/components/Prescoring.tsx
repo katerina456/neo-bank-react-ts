@@ -21,9 +21,10 @@ const Prescoring: React.FC = () => {
    const steps = useAppSelector(state => state.step);
 
    function showOffers(data: any) {
-       console.log(data[0].applicationId);
+       //console.log(data[0].applicationId);
        localStorage.setItem('userId', data[0].applicationId);
        localStorage.setItem('userOffers', JSON.stringify(data));
+       localStorage.setItem('userStatus', 'PREAPPROVAL');
        setOffers(data);
     }
 
@@ -45,10 +46,10 @@ const Prescoring: React.FC = () => {
                 />
             </div>
                       
-            <Element name="applyForm" className="element" />
-            {steps.step === 1 && <PrescoringForm handleClick={showOffers} />}
-            {steps.step === 2 && <Offer offers={offers} />}
-            {steps.step === 3 && <StepMessage />}
+            {steps.prescoringStep !== 3 && <Element name="applyForm" className="element" />}
+            {steps.prescoringStep === 1 && <PrescoringForm handleClick={showOffers} />}
+            {steps.prescoringStep === 2 && <Offer offers={offers} />}
+            {steps.prescoringStep === 3 && <StepMessage />}
         </Wraper>
     )
 }

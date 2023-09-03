@@ -1,58 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface StepState {
-    step: number,
+    prescoringStep: number,
+    scoringStep: number,
 }
 
+let startPrescoringStep = 1;
 
-function setStartStep() {
-    let startStep = 1;
-
-    console.log('a',localStorage.getItem('userId') !== null)
-
-    if (localStorage.getItem('userId') !== null) {
-        fetch(`http://localhost:8080/admin/application/${Number(localStorage.getItem('userId'))}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }) 
-        .then(res => {
-            console.log(res.status);
-            return res.json();
-        })
-        .then(data => {
-            console.log(data.status         );
-            if (data.status === 'PREAPPROVAL') {
-                startStep = 2 ;
-            } else {
-                startStep = 3 ;
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+if (localStorage.getItem('userId') !== null) {
+    if (localStorage.getItem('userStatus') === 'PREAPPROVAL' ) {
+        startPrescoringStep = 2;
+    } else {
+        startPrescoringStep = 3;
     }
-    
-    console.log('f',startStep)
-    return startStep
 }
+    
+console.log('f',startPrescoringStep, localStorage.getItem('userStatus'))
 
+let startScoringStep = 1;
+
+if (localStorage.getItem('secondForm') === 'done') {
+    startScoringStep = 2;
+}
 
 
 const initialState: StepState = {
-    step: setStartStep(),
+    prescoringStep: startPrescoringStep,
+    scoringStep: startScoringStep
 }
 
 export const stepSlice = createSlice({
     name: 'step',
     initialState: initialState,
     reducers: {
-        changeStep(state, action) {
-            state.step = action.payload
+        changePrescoringStep(state, action) {
+            state.prescoringStep = action.payload
+        },
+        changeScoringStep(state, action) {
+            state.scoringStep = action.payload
         }
     }
 })
 
-export const { changeStep } = stepSlice.actions;
+export const { changePrescoringStep, changeScoringStep } = stepSlice.actions;
 export default stepSlice.reducer;

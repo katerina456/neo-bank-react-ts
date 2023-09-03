@@ -6,14 +6,19 @@ import Wraper from "../components/Wraper";
 import "../styles/scoringSection.scss";
 import "../styles/main.scss";
 
+import { TypedUseSelectorHook, useSelector } from 'react-redux';
+import type { RootState } from '../store';
+
+const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
 const LoanApplicationId: React.FC = () => {
-    const [step, setStep] = React.useState(1);
+    const steps = useAppSelector(state => state.step);
 
     return (
         <main>   
             <Wraper classes="scoringSection"> 
-                {step === 1 && <Scoring handleClick={setStep} />}
-                {step === 2 && <ScoringMessage />}
+                {steps.scoringStep === 1 && <Scoring />}
+                {steps.scoringStep === 2 && <ScoringMessage />}
             </Wraper> 
         </main>
     )

@@ -23,8 +23,8 @@ const App: React.FC = () =>  {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/loan" element={<Loan />} />
-          <Route path="/loan/applicationId" element={<LoanApplicationId />} />
-          <Route path="/loan/applicationId/document" element={<LoanDocument />} />
+          <Route path="/loan/:user_id" element={<LoanApplicationId />} />
+          <Route path="/loan/:user_id/document" element={<LoanDocument />} />
         </Routes>
         <Footer />
       </BrowserRouter>

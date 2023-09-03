@@ -10,7 +10,7 @@ import Select from "./Select";
 import Loader from "./Loader";
 import FormTitle from "./FormTitle";
 import StepWraper from "./StepWraper";
-import { changeStep } from "../store/slices/stepSlice";
+import { changePrescoringStep } from "../store/slices/stepSlice";
 
 import "../styles/prescoringForm.scss";
 
@@ -55,7 +55,7 @@ const PrescoringForm: React.FC<Props> = (props) => {
 
     function setNextStep(data: any[]) {
         props.handleClick(data);
-        dispatch(changeStep(2));
+        dispatch(changePrescoringStep(2));
     }
 
     interface Values {
