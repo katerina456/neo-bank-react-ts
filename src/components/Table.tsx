@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "../styles/table.scss";
 
 const Table: React.FC = () => {
+    interface St {
+        number: string,
+        date: string,
+        totalPayment: string,
+        interestPayment: string,
+        debtPayment: string,
+        remainingDebt: string
+    }
+    const [tableInfo, setTableInfo] = React.useState<St[]>([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:8080/admin/application/${localStorage.getItem('userId')}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }) 
+        .then(res => {
+            console.log(res.status);
+            return res.json();
+        })
+        .then(data => {
+            let arr: any[] = data.credit.paymentSchedule
+            setTableInfo(arr);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }, [])
+    
     return (
         <table className="table">
             <thead>
@@ -16,14 +46,17 @@ const Table: React.FC = () => {
                 </tr>
             </thead>
             <tbody>
-                <tr className="table__row">
-                    <td>0</td>
-                    <td>19-08-2022</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>230500</td>
-                </tr>
+                {
+                    tableInfo !== undefined && tableInfo.map(item => <tr className="table__row" key={item.date}>
+                                            <td>{item.number}</td>
+                                            <td>{item.date}</td>
+                                            <td>{item.totalPayment}</td>
+                                            <td>{item.interestPayment}</td>
+                                            <td>{item.debtPayment}</td>
+                                            <td>{item.remainingDebt}</td>
+                                        </tr>
+                    )
+                }
             </tbody>
         </table>
     )

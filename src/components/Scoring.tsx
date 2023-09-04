@@ -49,6 +49,7 @@ const Scoring: React.FC = () => {
                 dependentAmount: "",
                 passportIssueDate: "",
                 passportIssueBranch: "",
+                
                 employmentStatus: "", 
                 employerINN: "",
                 salary: "",
@@ -60,13 +61,48 @@ const Scoring: React.FC = () => {
             validateOnBlur={false}
             onSubmit={(val) => {
                 console.log(val);
+                let obj: {
+                    gender: string,
+                    maritalStatus: string,
+                    dependentAmount: number,
+                    passportIssueDate: string,
+                    passportIssueBranch: string,
+                    employment: {
+                        employmentStatus: string, 
+                        employerINN: string,
+                        salary: number,
+                        position: string,
+                        workExperienceTotal: number,
+                        workExperienceCurrent: number,
+                    },
+                    account: string
+                    
+                } = {
+                    gender: val.gender,
+                    maritalStatus: val.maritalStatus,
+                    dependentAmount: +val.dependentAmount,
+                    passportIssueDate: val.passportIssueDate,
+                    passportIssueBranch: val.passportIssueBranch.slice(0,3) + '-' + val.passportIssueBranch.slice(3),
+                    employment: {
+                        employmentStatus: val.employmentStatus, 
+                        employerINN: val.employerINN,
+                        salary: +val.salary,
+                        position: val.position,
+                        workExperienceTotal: +val.workExperienceTotal,
+                        workExperienceCurrent: +val.workExperienceCurrent,
+                    },
+                    account: "11223344556677889900",
+                }
+
+                console.log(obj);
+                
                 setIsLoader(true);
                 fetch(`http://localhost:8080/application/registration/${localStorage.getItem('userId')}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(val)
+                    body: JSON.stringify(obj)
                 }) 
                 .then(res => {
                     setIsLoader(false);

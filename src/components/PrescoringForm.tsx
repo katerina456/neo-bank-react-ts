@@ -130,7 +130,7 @@ const PrescoringForm: React.FC<Props> = (props) => {
                                 <p className="form__text">{values.amount.toLocaleString()}</p>
                                 
                                 <input type="range" name="amount" onChange={handleChange}
-                                    min='15000' max='600000' 
+                                    min='15000' max='600000' step={10}
                                     style={{background: `linear-gradient(to right,  ${color1} 0%, ${color1} ${values.amount/600000*100}%, ${color2} ${values.amount/600000*100}%)`}}
                                 />
                                 <div >
