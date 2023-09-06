@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Loan from "./pages/Loan";
 import LoanApplicationId from "./pages/LoanApplicationId";
 import LoanDocument from "./pages/LoanDocument";
+import LoanSign from "./pages/LoanSign";
 import { setupStore } from "./store";
 
 import './styles/index.scss';
@@ -25,6 +26,7 @@ const App: React.FC = () =>  {
           <Route path="/loan" element={<Loan />} />
           <Route path="/loan/:user_id" element={<LoanApplicationId />} />
           <Route path="/loan/:user_id/document" element={<LoanDocument />} />
+          <Route path="/loan/:user_id/document/sign" element={<LoanSign />} />
         </Routes>
         <Footer />
       </BrowserRouter>

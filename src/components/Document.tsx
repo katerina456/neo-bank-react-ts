@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createPortal } from 'react-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from "yup";
+import { useDispatch } from 'react-redux';
 
 import StepWraper from "./StepWraper";
 import FormTitle from "./FormTitle";
@@ -9,6 +10,7 @@ import Button from "./Button";
 import Table from "./Table";
 import Checkbox from "./Checkbox";
 import Modal from "./Modal";
+import { changeDocumentStep } from "../store/slices/stepSlice";
 
 import "../styles/document.scss";
 
@@ -19,6 +21,8 @@ const validationSchema = Yup.object().shape({
 
 const Document: React.FC = () => {
     const [open, setOpen] = useState(false);
+
+    const dispatch = useDispatch();
 
     return (
         <StepWraper>
@@ -37,7 +41,7 @@ const Document: React.FC = () => {
                     onSubmit={(val) => {
                         console.log(val);
                         
-                        /* fetch('http://localhost:8080/document/{applicationId}', {
+                        fetch(`http://localhost:8080/document/${localStorage.getItem('userId')}`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -46,11 +50,12 @@ const Document: React.FC = () => {
                         }) 
                         .then(res => {
                             console.log(res.status);
-
+                            localStorage.setItem('thirdForm', 'done');
+                            dispatch(changeDocumentStep(2));
                         })
                         .catch(err => {
                             console.log(err);
-                        }); */
+                        });
                     }}
                     validationSchema={validationSchema}
                 >

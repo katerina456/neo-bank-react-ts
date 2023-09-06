@@ -1,5 +1,7 @@
 import React from "react";
+
 import '../styles/footer.scss';
+import logo from '../images/logo.png'
 
 const Footer: React.FC = () => {
     return (
@@ -7,7 +9,7 @@ const Footer: React.FC = () => {
             <div className="container">
                 <div className="footer__contacts"> 
                     <figure>
-                        <a href="#"><img src="images/logo.png" alt=""/></a>
+                        <a href="#"><img src={logo} alt=""/></a>
                     </figure>
                     <address>
                         <ul>

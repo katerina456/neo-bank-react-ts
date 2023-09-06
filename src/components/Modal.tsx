@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+
 import Button from "./Button";
 
 import '../styles/modal.scss';
+
+import { changeScoringStep, changeDocumentStep, changePrescoringStep } from "../store/slices/stepSlice";
 
 
 interface Props {
@@ -15,14 +19,20 @@ const text = [
 ]
 
 const Modal: React.FC<Props> = (props) => {
+    const dispatch = useDispatch();
+
     function closeModal() {
-        props.handleClick()
+        props.handleClick();
     }
 
     const [isDeny, setIsDeny] = useState(false);
 
     function denyPage() {
         setIsDeny(true);
+        localStorage.clear();
+        dispatch(changeScoringStep(1));
+        dispatch(changeDocumentStep(1));
+        dispatch(changePrescoringStep(1));
     }
 
     return (
@@ -43,7 +53,9 @@ const Modal: React.FC<Props> = (props) => {
                     <div onClick={denyPage}>
                         <Button text="Deny" color='pink' />
                     </div>
-                    <Button text="Send" />
+                    <div onClick={closeModal}>
+                        <Button text="Send" />
+                    </div>
                     </>}
                     {isDeny && <Link to="/" ><Button text="Go home" /></Link>}
                 </div>

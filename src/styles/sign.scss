@@ -1,0 +1,35 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.sign {
+    padding-top: 80px;
+}
+
+.sign__header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.sign__text {
+    @include fonts(#4F5665, 20px, 500, 112%);
+    margin-bottom: 32px;
+}
+
+.sign__document {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    p {
+        @include fonts(#000, 20px, 500, 112%);
+    }
+}
+
+.sign__send {
+    display: flex;
+    column-gap: 80px;
+    align-items: center;
+    justify-content: end;
+}

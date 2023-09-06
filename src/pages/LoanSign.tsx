@@ -1,7 +1,7 @@
 import React from "react";
-import Scoring from "../components/Scoring";
-import FormMessage from "../components/FormMessage";
 import Wraper from "../components/Wraper";
+import FormMessage from "../components/FormMessage";
+import Sign from "../components/Sign";
 
 import "../styles/scoringSection.scss";
 import "../styles/main.scss";
@@ -12,19 +12,18 @@ import type { RootState } from '../store';
 
 const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-const LoanApplicationId: React.FC = () => {
+const LoanSign: React.FC = () => {
     const steps = useAppSelector(state => state.step);
 
     return (
         <main>   
             <Wraper classes="scoringSection"> 
-                {steps.scoringStep === 1 && <Scoring />}
-                {steps.scoringStep === 2 && 
-                            <FormMessage title="Wait for a decision on the application" 
-                            text="The answer will come to your mail within 10 minutes" />}
+                {steps.signStep === 1 && <Sign />}
+                {steps.signStep === 2 && <FormMessage title='Documents have been successfully signed and sent for approval'
+                    text='Within 10 minutes you will be sent a PIN code to your email for confirmation' />}
             </Wraper> 
         </main>
     )
 }
 
-export default LoanApplicationId;
+export default LoanSign;

@@ -126,7 +126,7 @@ const Scoring: React.FC = () => {
 
                     <div className="form__inputs">
                         <Select name='gender' label="What's your gender" required={true}
-                                arr={["MALE", "FAMALE"]} 
+                                arr={["MALE", "FEMALE", "NON_BINARY"]} 
                                 addEmptyOption={true} size="medium"
                                 errors={errors} isSubmitting={isSubmitting}
                             />

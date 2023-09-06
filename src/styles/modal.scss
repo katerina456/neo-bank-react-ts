@@ -6,7 +6,7 @@
     z-index: 10;
     background: rgba(0,0,0,0.5);
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     top: 0;
     bottom: 0;
@@ -18,6 +18,8 @@
     width: 448px;
     background: #FFF;
     padding: 16px;
+    position: relative;
+    top: 35vh;
 }
 
 .modal__title {

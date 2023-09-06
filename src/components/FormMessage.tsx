@@ -3,17 +3,22 @@ import React from "react";
 import "../styles/scoringMessage.scss";
 
 
-const ScoringMessage: React.FC = () => {
+interface Props {
+    title: string,
+    text: string,
+}
+
+const FormMessage: React.FC<Props> = (props) => {
     return (
         <div className="scoringMessage">
             <h2 className="scoringMessage__title">
-                Wait for a decision on the application
+                {props.title}
             </h2>
             <p className="scoringMessage__text">
-                The answer will come to your mail within 10 minutes
+                {props.text}
             </p>
         </div>
     )
 }
 
-export default ScoringMessage;
+export default FormMessage;

@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 interface StepState {
     prescoringStep: number,
     scoringStep: number,
+    documentStep: number,
+    signStep: number,
 }
 
 let startPrescoringStep = 1;
@@ -23,10 +25,18 @@ if (localStorage.getItem('secondForm') === 'done') {
     startScoringStep = 2;
 }
 
+let startDocumentStep = 1;
+
+if (localStorage.getItem('thirdForm') === 'done') {
+    startDocumentStep = 2;
+}
+
 
 const initialState: StepState = {
     prescoringStep: startPrescoringStep,
-    scoringStep: startScoringStep
+    scoringStep: startScoringStep,
+    documentStep: startDocumentStep,
+    signStep: 1
 }
 
 export const stepSlice = createSlice({
@@ -38,9 +48,15 @@ export const stepSlice = createSlice({
         },
         changeScoringStep(state, action) {
             state.scoringStep = action.payload
+        },
+        changeDocumentStep(state, action) {
+            state.documentStep = action.payload
+        },
+        changeSignStep(state, action) {
+            state.signStep = action.payload
         }
     }
 })
 
-export const { changePrescoringStep, changeScoringStep } = stepSlice.actions;
+export const { changePrescoringStep, changeScoringStep, changeDocumentStep, changeSignStep } = stepSlice.actions;
 export default stepSlice.reducer;
