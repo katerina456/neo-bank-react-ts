@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 interface StepState {
     prescoringStep: number,
     scoringStep: number,
     documentStep: number,
     signStep: number,
+    success: boolean
 }
 
 let startPrescoringStep = 1;
@@ -16,8 +17,6 @@ if (localStorage.getItem('userId') !== null) {
         startPrescoringStep = 3;
     }
 }
-    
-console.log('f',startPrescoringStep, localStorage.getItem('userStatus'))
 
 let startScoringStep = 1;
 
@@ -31,12 +30,25 @@ if (localStorage.getItem('thirdForm') === 'done') {
     startDocumentStep = 2;
 }
 
+let startSignStep = 1;
+
+if (localStorage.getItem('sign') === 'done') {
+    startSignStep = 2; 
+}
+
+let successStep = false;
+
+if (localStorage.getItem('success') === 'ok') {
+    successStep = true;
+}
+
 
 const initialState: StepState = {
     prescoringStep: startPrescoringStep,
     scoringStep: startScoringStep,
     documentStep: startDocumentStep,
-    signStep: 1
+    signStep: startSignStep,
+    success: successStep,
 }
 
 export const stepSlice = createSlice({
@@ -44,19 +56,22 @@ export const stepSlice = createSlice({
     initialState: initialState,
     reducers: {
         changePrescoringStep(state, action) {
-            state.prescoringStep = action.payload
+            state.prescoringStep = action.payload;
         },
         changeScoringStep(state, action) {
-            state.scoringStep = action.payload
+            state.scoringStep = action.payload;
         },
         changeDocumentStep(state, action) {
-            state.documentStep = action.payload
+            state.documentStep = action.payload;
         },
         changeSignStep(state, action) {
-            state.signStep = action.payload
+            state.signStep = action.payload;
+        },
+        changeSuccess(state, action) {
+            state.success = action.payload;
         }
     }
 })
 
-export const { changePrescoringStep, changeScoringStep, changeDocumentStep, changeSignStep } = stepSlice.actions;
+export const { changePrescoringStep, changeScoringStep, changeDocumentStep, changeSignStep, changeSuccess } = stepSlice.actions;
 export default stepSlice.reducer;

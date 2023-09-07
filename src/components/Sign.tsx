@@ -11,10 +11,9 @@ import { changeSignStep } from "../store/slices/stepSlice";
 
 import "../styles/sign.scss";
 import documentImg from'../icons/document.svg';
-//import documentFile from '../files/credit_card_offer'
 
 const validationSchema = Yup.object().shape({
-    agree: Yup.boolean().oneOf([true], "You must agree with the payment schedule")
+    agree: Yup.boolean().oneOf([true], "You must agree")
 });
 
 const Sign: React.FC = () => {
@@ -43,9 +42,7 @@ const Sign: React.FC = () => {
                 initialValues={{ agree: false }}
                 validateOnChange={false}
                 validateOnBlur={false}
-                onSubmit={(val) => {
-                    console.log(val);
-                        
+                onSubmit={(val) => {                     
                     fetch(`http://localhost:8080/document/${localStorage.getItem('userId')}/sign`, {
                         method: 'POST',
                         headers: {
@@ -55,7 +52,7 @@ const Sign: React.FC = () => {
                     }) 
                     .then(res => {
                         console.log(res.status);
-                        localStorage.setItem('thirdForm', 'done');
+                        localStorage.setItem('sign', 'done');
                         dispatch(changeSignStep(2));
                     })
                     .catch(err => {

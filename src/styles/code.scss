@@ -1,0 +1,54 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+
+.code {
+    padding-top: 80px;
+}
+
+.code__title {
+    @include fonts(#1C1C1E, 30px, 700, 112%);
+    text-align: center;
+    letter-spacing: 0.6px;
+    margin-bottom: 32px;
+}
+
+.code__inputs {
+    display: flex;
+    justify-content: center;
+    column-gap: 16px;
+    margin-bottom: 16px;
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+}
+
+.code__input {
+    border-radius: 8px;
+    border: 1px solid #808080;
+    background-color: rgba(255, 255, 255, 0.00);
+    width: 48px;
+    height: 48px;
+    outline: none;
+    @include fonts(#000, 20px, 500, 112%);
+    text-align: center;
+    letter-spacing: 0.4px;
+    background-image: url(../icons/code_input.svg);
+    &:focus {
+        border: 1px solid #3182CE;
+        background-image: none;
+    }
+}
+
+.code__input-ready {
+    background-image: none;
+}
+
+.code__error {
+    @include fonts(#FF5631, 16px, 500, 100%);
+    text-align: center;
+    opacity: 0;
+}
+
+

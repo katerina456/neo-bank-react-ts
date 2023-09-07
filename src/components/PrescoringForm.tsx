@@ -86,9 +86,7 @@ const PrescoringForm: React.FC<Props> = (props) => {
             }}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={(values: Values) => {
-                console.log(values);                     
-
+            onSubmit={(values: Values) => {                    
                 if (values['middleName'] === '') {
                     delete values.middleName;
                 }
@@ -107,13 +105,11 @@ const PrescoringForm: React.FC<Props> = (props) => {
                 })
                 .then(data => {
                     setIsLoader(false);
-                   // console.log(data);
                     setNextStep(data);
                 })
                 .catch(err => {
                     setIsLoader(false);
                     console.log(err);
-                    //setNextStep();
                 });
             }}
             validationSchema={validationSchema}

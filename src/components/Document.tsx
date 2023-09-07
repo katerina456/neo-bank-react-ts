@@ -38,9 +38,7 @@ const Document: React.FC = () => {
                     initialValues={{ agree: false }}
                     validateOnChange={false}
                     validateOnBlur={false}
-                    onSubmit={(val) => {
-                        console.log(val);
-                        
+                    onSubmit={(val) => {                       
                         fetch(`http://localhost:8080/document/${localStorage.getItem('userId')}`, {
                             method: 'POST',
                             headers: {

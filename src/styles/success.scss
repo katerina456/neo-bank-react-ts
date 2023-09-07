@@ -1,0 +1,24 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+
+.success {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 32px;
+    padding-top: 16px;
+}
+
+.success__image, .success__button {
+    text-align: center;
+}
+
+.success__title {
+    @include fonts(#1C1C1E, 30px, 700, 147.4%);
+    text-align: center;
+}
+
+.success__text {
+    @include fonts(#4F5665, 16px, 500, 147.4%);
+    text-align: center;
+}

@@ -60,7 +60,6 @@ const Scoring: React.FC = () => {
             validateOnChange={false}
             validateOnBlur={false}
             onSubmit={(val) => {
-                console.log(val);
                 let obj: {
                     gender: string,
                     maritalStatus: string,
@@ -93,8 +92,6 @@ const Scoring: React.FC = () => {
                     },
                     account: "11223344556677889900",
                 }
-
-                console.log(obj);
                 
                 setIsLoader(true);
                 fetch(`http://localhost:8080/application/registration/${localStorage.getItem('userId')}`, {
