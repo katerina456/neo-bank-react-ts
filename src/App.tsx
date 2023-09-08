@@ -10,6 +10,7 @@ import LoanApplicationId from "./pages/LoanApplicationId";
 import LoanDocument from "./pages/LoanDocument";
 import LoanSign from "./pages/LoanSign";
 import LoanCode from "./pages/LoanCode";
+import NotFound from "./pages/NotFound";
 import { setupStore } from "./store";
 
 import './styles/index.scss';
@@ -29,6 +30,7 @@ const App: React.FC = () =>  {
           <Route path="/loan/:user_id/document" element={<LoanDocument />} />
           <Route path="/loan/:user_id/document/sign" element={<LoanSign />} />
           <Route path="/loan/:user_id/code" element={<LoanCode />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>

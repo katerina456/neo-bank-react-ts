@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import FormTitle from "./FormTitle";
 import Button from "./Button";
-
+import Loader from "./Loader";
 import Checkbox from "./Checkbox";
 import { changeSignStep } from "../store/slices/stepSlice";
 
@@ -17,11 +17,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const Sign: React.FC = () => {
+    const [isLoader, setIsLoader] = React.useState(false);
+
     const dispatch = useDispatch();
 
     return (
         <div className="sign">
-            <div className="sign__header">
+            {!isLoader && <><div className="sign__header">
                 <FormTitle title='Signing of documents' number={4} />
             </div>
 
@@ -42,7 +44,8 @@ const Sign: React.FC = () => {
                 initialValues={{ agree: false }}
                 validateOnChange={false}
                 validateOnBlur={false}
-                onSubmit={(val) => {                     
+                onSubmit={(val) => {           
+                    setIsLoader(true);          
                     fetch(`http://localhost:8080/document/${localStorage.getItem('userId')}/sign`, {
                         method: 'POST',
                         headers: {
@@ -51,11 +54,13 @@ const Sign: React.FC = () => {
                         body: JSON.stringify(val)
                     }) 
                     .then(res => {
+                        setIsLoader(false);
                         console.log(res.status);
                         localStorage.setItem('sign', 'done');
                         dispatch(changeSignStep(2));
                     })
                     .catch(err => {
+                        setIsLoader(false);
                         console.log(err);
                     });
                 }}
@@ -68,7 +73,9 @@ const Sign: React.FC = () => {
                         <Button text="Send" type="submit" />
                     </Form>
                 )}
-            </Formik>        
+            </Formik>    </>}
+
+            {isLoader && <Loader />}    
         </div>
     )
 }

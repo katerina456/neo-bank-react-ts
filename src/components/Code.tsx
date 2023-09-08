@@ -66,7 +66,8 @@ const Code: React.FC = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(7201)
+                body: JSON.stringify(String(inputs.first) + String(inputs.second) + 
+                                    String(inputs.third) + String(inputs.fourth))
         }) 
         .then(res => {
             setIsLoader(false);

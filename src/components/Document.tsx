@@ -10,6 +10,7 @@ import Button from "./Button";
 import Table from "./Table";
 import Checkbox from "./Checkbox";
 import Modal from "./Modal";
+import Loader from "./Loader";
 import { changeDocumentStep } from "../store/slices/stepSlice";
 
 import "../styles/document.scss";
@@ -20,13 +21,15 @@ const validationSchema = Yup.object().shape({
 });
 
 const Document: React.FC = () => {
+    const [isLoader, setIsLoader] = React.useState(false);
+
     const [open, setOpen] = useState(false);
 
     const dispatch = useDispatch();
 
     return (
         <StepWraper>
-            <div className="document__header">
+            {!isLoader && <><div className="document__header">
                 <FormTitle title='Payment Schedule' number={3} />
             </div>
             <Table />
@@ -38,7 +41,8 @@ const Document: React.FC = () => {
                     initialValues={{ agree: false }}
                     validateOnChange={false}
                     validateOnBlur={false}
-                    onSubmit={(val) => {                       
+                    onSubmit={(val) => {     
+                        setIsLoader(true);                  
                         fetch(`http://localhost:8080/document/${localStorage.getItem('userId')}`, {
                             method: 'POST',
                             headers: {
@@ -47,11 +51,13 @@ const Document: React.FC = () => {
                             body: JSON.stringify(val)
                         }) 
                         .then(res => {
+                            setIsLoader(false);
                             console.log(res.status);
                             localStorage.setItem('thirdForm', 'done');
                             dispatch(changeDocumentStep(2));
                         })
                         .catch(err => {
+                            setIsLoader(false);
                             console.log(err);
                         });
                     }}
@@ -65,7 +71,9 @@ const Document: React.FC = () => {
                         </Form>
                     )}
                 </Formik>        
-            </div>
+            </div></>}
+
+            {isLoader && <Loader />}
 
             {open && createPortal(<Modal handleClick={() => setOpen(false)} />, document.body)}
         </StepWraper>
