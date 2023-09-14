@@ -95,7 +95,7 @@ const Code: React.FC = () => {
             {!isLoader && <div className="code">
                 <h2 className="code__title">Please enter confirmation code</h2>
                 <div className="code__inputs">
-                    <input className="code__input" name="first" autoFocus 
+                    <input className="code__input" name="first" autoFocus data-testid="input"
                        value={inputs.first} onChange={handleChange} type="number" />
                     <input className="code__input" name="second"  
                        value={inputs.second} onChange={handleChange} type="number" />

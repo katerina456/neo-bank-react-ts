@@ -19,16 +19,16 @@ const Footer: React.FC = () => {
                     </address>
                 </div>
                 <ul>
-                    <li><a href="#">About bank</a></li>
-                    <li><a href="#">Ask a Question</a></li>
-                    <li><a href="#">Quality of service</a></li>
-                    <li><a href="#">Requisites</a></li>
-                    <li><a href="#">Press center</a></li>
-                    <li><a href="#">Bank career</a></li>
-                    <li><a href="#">Investors</a></li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Business and processes</a></li>
-                    <li><a href="#">Compliance and business ethics</a></li>
+                    <li data-testid="nav"><a href="#">About bank</a></li>
+                    <li data-testid="nav"><a href="#">Ask a Question</a></li>
+                    <li data-testid="nav"><a href="#">Quality of service</a></li>
+                    <li data-testid="nav"><a href="#">Requisites</a></li>
+                    <li data-testid="nav"><a href="#">Press center</a></li>
+                    <li data-testid="nav"><a href="#">Bank career</a></li>
+                    <li data-testid="nav"><a href="#">Investors</a></li>
+                    <li data-testid="nav"><a href="#">Analytics</a></li>
+                    <li data-testid="nav"><a href="#">Business and processes</a></li>
+                    <li data-testid="nav"><a href="#">Compliance and business ethics</a></li>
                 </ul>
                 <div className="footer__cookies">
                     <p className="footer__text">
